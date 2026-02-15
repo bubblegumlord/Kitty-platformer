@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ddbxmdi4cpi8b"]
+
+[ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="1_46lwt"]
+[ext_resource type="PackedScene" uid="uid://dxfqgiym8jr45" path="res://objects/collectibles/fish/fish.tscn" id="2_x25rp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x25rp"]
+size = Vector2(658, 58)
+
+[node name="TestLevel" type="Node2D" unique_id=1561712556]
+
+[node name="Player" parent="." unique_id=1077531745 instance=ExtResource("1_46lwt")]
+position = Vector2(319, 192)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=769988357]
+position = Vector2(0, 320)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=80696491]
+position = Vector2(319, 19)
+shape = SubResource("RectangleShape2D_x25rp")
+
+[node name="Fish" parent="." unique_id=1270360593 instance=ExtResource("2_x25rp")]
+position = Vector2(400, 288)
+id = 5

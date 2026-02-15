@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c73kf3v3hg1so"]
+
+[ext_resource type="Script" uid="uid://br1u3oph6dugm" path="res://characters/player/player.gd" id="1_508ok"]
+
+[sub_resource type="Gradient" id="Gradient_b886q"]
+offsets = PackedFloat32Array(0, 0.0020604397)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_508ok"]
+gradient = SubResource("Gradient_b886q")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxgcw"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_508ok"]
+radius = 11.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1077531745]
+collision_layer = 0
+script = ExtResource("1_508ok")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=162866938]
+position = Vector2(0, -8)
+scale = Vector2(0.0625, 16)
+texture = SubResource("GradientTexture1D_508ok")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1890657398]
+shape = SubResource("CircleShape2D_xxgcw")
+
+[node name="Hitboxes" type="Node2D" parent="." unique_id=7215113]
+visible = false
+
+[node name="Collectibles" type="Area2D" parent="Hitboxes" unique_id=1345590820]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape2D" parent="Hitboxes/Collectibles" unique_id=584909903]
+shape = SubResource("CircleShape2D_508ok")
