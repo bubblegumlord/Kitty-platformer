@@ -7,16 +7,48 @@ enum State {
 	FALL,
 }
 
-@export var speed: int = 200
-@export var jump_speed: int = -400
+const GRAVITY: int = 400
+
+#movement constants
+const SPEED: int = 300
+const ACCELERATION: int = 600
+const DECELERATION: int = 1200
+const JUMP_HEIGHT: int = -200
+
+var direction_x: float
+var coyote_active: bool
+
+@onready var jump_buffer_timer: Timer = $Timers/JumpBufferTimer
+@onready var coyote_timer: Timer = $Timers/CoyoteTimer
 
 func _physics_process(delta: float) -> void:
-	velocity.x = Input.get_axis("ui_left", "ui_right") * speed
+	direction_x = Input.get_axis("LEFT", "RIGHT")
 	
-	if not is_on_floor():
-		velocity.y += Globals.GRAVITY * delta
+	if direction_x != 0:
+		velocity.x = move_toward(velocity.x, direction_x * SPEED, delta * ACCELERATION)
+	else:
+		velocity.x = move_toward(velocity.x, 0, delta * DECELERATION)
 	
-	if Input.is_action_just_pressed("ui_jump") and is_on_floor():
-		velocity.y = jump_speed
+	if is_on_floor():
+		if coyote_active:
+			coyote_timer.stop()
+			coyote_active = false
+	else:
+		if !coyote_active:
+			coyote_timer.start()
+			coyote_active = true
+		
+		if velocity.y > 10:
+			velocity.y += GRAVITY * delta * 2
+		else:
+			velocity.y += GRAVITY * delta
+	
+	if Input.is_action_just_pressed("JUMP"):
+		jump_buffer_timer.start()
+	
+	if (is_on_floor() or !coyote_timer.is_stopped()) and !jump_buffer_timer.is_stopped():
+		velocity.y = JUMP_HEIGHT
+		coyote_timer.stop()
+		coyote_active = true
 	
 	move_and_slide()
