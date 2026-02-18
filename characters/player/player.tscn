@@ -8,8 +8,8 @@ offsets = PackedFloat32Array(0, 0.0020604397)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_508ok"]
 gradient = SubResource("Gradient_b886q")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xxgcw"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_508ok"]
+size = Vector2(26, 12)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_508ok"]
 radius = 11.0
@@ -19,12 +19,13 @@ collision_layer = 0
 script = ExtResource("1_508ok")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=162866938]
-position = Vector2(0, -8)
-scale = Vector2(0.0625, 16)
+position = Vector2(-4.7683716e-07, -16)
+scale = Vector2(0.125, 32)
 texture = SubResource("GradientTexture1D_508ok")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1890657398]
-shape = SubResource("CircleShape2D_xxgcw")
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_508ok")
 
 [node name="Hitboxes" type="Node2D" parent="." unique_id=7215113]
 visible = false
@@ -43,5 +44,5 @@ wait_time = 0.15
 one_shot = true
 
 [node name="CoyoteTimer" type="Timer" parent="Timers" unique_id=1141343177]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true

@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var id: int
+@export var id: int = 0
 
 func _ready() -> void:
 	if id == 0:
