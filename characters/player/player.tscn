@@ -12,7 +12,10 @@ gradient = SubResource("Gradient_b886q")
 size = Vector2(26, 12)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_508ok"]
-radius = 11.0
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxgcw"]
+radius = 14.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1077531745]
 collision_layer = 0
@@ -24,6 +27,7 @@ scale = Vector2(0.125, 32)
 texture = SubResource("GradientTexture1D_508ok")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1890657398]
+visible = false
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_508ok")
 
@@ -36,6 +40,13 @@ collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="Hitboxes/Collectibles" unique_id=584909903]
 shape = SubResource("CircleShape2D_508ok")
+
+[node name="Hurtbox" type="Area2D" parent="Hitboxes" unique_id=1133986047]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape2D" parent="Hitboxes/Hurtbox" unique_id=1968168146]
+shape = SubResource("CircleShape2D_xxgcw")
 
 [node name="Timers" type="Node2D" parent="." unique_id=1707075624]
 

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://d35qwqdve1xkj"]
+
+[ext_resource type="Script" uid="uid://66uhmgwevkc4" path="res://characters/enemies/test_enemy/test_enemy.gd" id="1_ye35i"]
+
+[sub_resource type="Gradient" id="Gradient_fo3kv"]
+offsets = PackedFloat32Array(0.3185028)
+colors = PackedColorArray(0.77284384, 0.25137874, 0.16993934, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ye35i"]
+gradient = SubResource("Gradient_fo3kv")
+width = 16
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3b7ya"]
+size = Vector2(14, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fo3kv"]
+
+[node name="TestEnemy" type="CharacterBody2D" unique_id=261858784]
+collision_layer = 0
+script = ExtResource("1_ye35i")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=325003704]
+position = Vector2(0, -8)
+scale = Vector2(1, 16)
+texture = SubResource("GradientTexture1D_ye35i")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=103899629]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_3b7ya")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1543678739]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=988115168]
+shape = SubResource("CircleShape2D_fo3kv")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

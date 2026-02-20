@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ddbxmdi4cpi8b"]
 
 [ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="1_46lwt"]
-[ext_resource type="PackedScene" uid="uid://dxfqgiym8jr45" path="res://objects/collectibles/fish/fish.tscn" id="2_x25rp"]
+[ext_resource type="PackedScene" uid="uid://d35qwqdve1xkj" path="res://characters/enemies/test_enemy/test_enemy.tscn" id="2_x25rp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x25rp"]
 size = Vector2(218, 58)
@@ -35,6 +35,6 @@ collision_mask = 0
 position = Vector2(96, 18)
 shape = SubResource("RectangleShape2D_x25rp")
 
-[node name="Fish" parent="." unique_id=1270360593 instance=ExtResource("2_x25rp")]
-position = Vector2(448, 240)
-id = 5
+[node name="TestEnemy" parent="." unique_id=261858784 node_paths=PackedStringArray("player") instance=ExtResource("2_x25rp")]
+position = Vector2(184, 240)
+player = NodePath("../Player")

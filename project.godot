@@ -90,6 +90,7 @@ RIGHT={
 
 2d_physics/layer_1="WorldCollision"
 2d_physics/layer_2="Collectibles"
+2d_physics/layer_3="PlayerHurtbox"
 
 [physics]
 
