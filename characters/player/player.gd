@@ -14,6 +14,8 @@ const SPEED: float = 250
 const ACCELERATION: float = 750
 const DECELERATION: float = 1250
 
+@export var current_level: Node2D
+
 # jump constants
 const JUMP_HEIGHT: float = 75
 const JUMP_TIME_PEAK: float = 0.35
@@ -52,7 +54,20 @@ func _physics_process(delta: float) -> void:
 	check_coyote()
 	move_and_slide()
 
-## STATE FUNCTIONS
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("RESET"):
+		if Globals.checkpoint_level != current_level:
+			Globals.change_level()
+		
+		global_position = Globals.active_checkpoint
+		velocity = Vector2.ZERO
+		state = State.IDLE
+
+func _on_hurtbox_area_entered(_area: Area2D) -> void:
+	is_hit = true
+	state = State.HIT
+
+## STATE MACHINE
 func idle_state() -> void:
 	# play idle
 	if direction_x != 0 and is_on_floor():
@@ -68,9 +83,8 @@ func idle_state() -> void:
 		state = State.FALL
 
 func move_state(delta: float) -> void:
-	direction_sprite = direction_x
-	
 	if direction_x != 0:
+		direction_sprite = direction_x
 		# play move
 		velocity.x = set_speed(true, ACCELERATION * delta)
 	elif direction_x == 0 or not check_turn(velocity.x, direction_x):
@@ -131,16 +145,15 @@ func fall_state(delta: float) -> void:
 
 func hit_state() -> void:
 	# play hit
+	if is_on_floor() and not is_hit:
+		state = State.MOVE
+	
 	if is_hit:
 		velocity.x = -1 * direction_sprite * 200
 		velocity.y = jump_velocity
 		is_hit = false
-	
-	if is_on_floor():
-		state = State.IDLE
 
 ## HELPER FUNCTIONS
-
 func set_speed(moving: bool, delta: float) -> float:
 	if moving:
 		return move_toward(velocity.x, direction_x * SPEED, delta)
