@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ddbxmdi4cpi8b"]
 
 [ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="1_46lwt"]
-[ext_resource type="PackedScene" uid="uid://d35qwqdve1xkj" path="res://characters/enemies/test_enemy/test_enemy.tscn" id="2_x25rp"]
 [ext_resource type="PackedScene" uid="uid://dxfqgiym8jr45" path="res://objects/collectibles/fish/fish.tscn" id="3_gmgay"]
+[ext_resource type="PackedScene" uid="uid://b18k51p75crcn" path="res://characters/enemies/dachshund/dachshund.tscn" id="4_o6mel"]
 [ext_resource type="PackedScene" uid="uid://cbesvvvfn2gk7" path="res://objects/checkpoint/checkpoint.tscn" id="4_w7r7j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x25rp"]
@@ -38,9 +38,6 @@ collision_mask = 0
 position = Vector2(96, 18)
 shape = SubResource("RectangleShape2D_x25rp")
 
-[node name="TestEnemy" parent="." unique_id=261858784 instance=ExtResource("2_x25rp")]
-position = Vector2(176, 232)
-
 [node name="Fish" parent="." unique_id=1270360593 instance=ExtResource("3_gmgay")]
 position = Vector2(336, 272)
 id = 5
@@ -48,3 +45,7 @@ id = 5
 [node name="Checkpoint" parent="." unique_id=1104135889 node_paths=PackedStringArray("current_level") instance=ExtResource("4_w7r7j")]
 position = Vector2(456, 248)
 current_level = NodePath("..")
+
+[node name="Dachshund" parent="." unique_id=1706440273 instance=ExtResource("4_o6mel")]
+position = Vector2(128, 128)
+direction = 90
