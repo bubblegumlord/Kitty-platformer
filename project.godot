@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Kitty Platform"
-run/main_scene="uid://ddbxmdi4cpi8b"
+run/main_scene="uid://crei2yb8kiiqe"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,7 @@ Globals="*uid://t4s70c2hld23"
 gdscript/warnings/unassigned_variable=2
 gdscript/warnings/unassigned_variable_op_assign=2
 gdscript/warnings/unused_private_class_variable=2
+gdscript/warnings/unused_signal=0
 gdscript/warnings/untyped_declaration=2
 
 [display]

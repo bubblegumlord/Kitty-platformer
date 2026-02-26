@@ -42,10 +42,10 @@ shape = SubResource("RectangleShape2D_x25rp")
 position = Vector2(336, 272)
 id = 5
 
-[node name="Checkpoint" parent="." unique_id=1104135889 node_paths=PackedStringArray("current_level") instance=ExtResource("4_w7r7j")]
-position = Vector2(456, 248)
-current_level = NodePath("..")
-
 [node name="Dachshund" parent="." unique_id=1706440273 instance=ExtResource("4_o6mel")]
 position = Vector2(128, 128)
-direction = 90
+direction = 180
+
+[node name="Checkpoint" parent="." unique_id=1104135889 node_paths=PackedStringArray("current_level") instance=ExtResource("4_w7r7j")]
+position = Vector2(464, 248)
+current_level = NodePath("..")

@@ -35,6 +35,9 @@ var state: State = State.IDLE
 @onready var gravity_peak: float = (JUMP_HEIGHT * 2) / (JUMP_TIME_PEAK)**2
 @onready var gravity_descent: float = (JUMP_HEIGHT * 2) / (JUMP_TIME_DESCENT)**2
 
+func _ready() -> void:
+	Globals.RESET.connect(on_reset)
+
 func _physics_process(delta: float) -> void:
 	direction_x = Input.get_axis("LEFT", "RIGHT")
 	
@@ -56,12 +59,7 @@ func _physics_process(delta: float) -> void:
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("RESET"):
-		if Globals.checkpoint_level != current_level:
-			Globals.change_level()
-		
-		global_position = Globals.active_checkpoint
-		velocity = Vector2.ZERO
-		state = State.IDLE
+		Globals.CHANGE_LEVEL.emit()
 
 func _on_hurtbox_area_entered(_area: Area2D) -> void:
 	is_hit = true
@@ -183,3 +181,8 @@ func check_coyote() -> void:
 		if !coyote_active:
 			coyote_timer.start()
 			coyote_active = true
+
+func on_reset() -> void:
+	global_position = Globals.checkpoint_position
+	velocity = Vector2.ZERO
+	state = State.IDLE

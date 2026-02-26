@@ -12,7 +12,7 @@ var new_position: Vector2
 
 func _ready() -> void:
 	if direction % 90 != 0:
-		print("Jamnik " + str(global_position) + " niewłaściwy kierunek")
+		push_warning("Jamnik %s niewłaściwy kierunek" % global_position)
 	
 	rad_dir = deg_to_rad(direction)
 	move_vector = Vector2(cos(rad_dir), sin(rad_dir))

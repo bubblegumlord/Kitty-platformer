@@ -4,7 +4,7 @@ extends Area2D
 
 func _ready() -> void:
 	if id == 0:
-		print("Ryba " + str(global_position) + " niewłaściwe ID")
+		push_warning("Ryba %s niewłaściwe ID" % global_position)
 	
 	if Globals.items[id] == true:
 		queue_free()

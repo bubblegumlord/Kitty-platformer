@@ -1,10 +1,13 @@
 extends Node
 
+signal CHANGE_LEVEL()
+signal RESET
+
 var items: Dictionary[int, bool]
 var saved_items: Dictionary[int, bool]
 
-var active_checkpoint: Vector2
-var checkpoint_level: Node2D
+var checkpoint_position: Vector2
+var checkpoint_level: String
 var level: String
 
 func _ready() -> void:
@@ -12,7 +15,3 @@ func _ready() -> void:
 		items[i] = false
 	
 	saved_items = items
-
-func change_level() -> void:
-	level = checkpoint_level.scene_file_path
-	get_tree().change_scene_to_file(level)

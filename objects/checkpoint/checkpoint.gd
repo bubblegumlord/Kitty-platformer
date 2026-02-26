@@ -4,11 +4,17 @@ extends Area2D
 
 func _ready() -> void:
 	if not current_level:
-		print("Flaga " + str(global_position) + " brak przypisanego poziomu")
+		push_warning("Flaga %s nie ma przypisanego poziomu" % global_position)
+	
+	Globals.RESET.connect(on_reset)
+
+func on_reset() -> void:
+	Globals.checkpoint_level = current_level.scene_file_path
+	Globals.checkpoint_position = global_position
 
 func _on_area_entered(_area: Area2D) -> void:
-	if Globals.checkpoint_level != current_level:
-		Globals.checkpoint_level = current_level
+	if Globals.checkpoint_level != current_level.scene_file_path:
+		Globals.checkpoint_level = current_level.scene_file_path
 	
-	if Globals.active_checkpoint != global_position:
-		Globals.active_checkpoint = global_position
+	if Globals.checkpoint_position != global_position:
+		Globals.checkpoint_position = global_position
