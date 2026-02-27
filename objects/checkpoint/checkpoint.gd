@@ -6,7 +6,7 @@ func _ready() -> void:
 	if not current_level:
 		push_warning("Flaga %s nie ma przypisanego poziomu" % global_position)
 	
-	Globals.RESET.connect(on_reset)
+	Globals.RESET_OBJECTS.connect(on_reset)
 
 func on_reset() -> void:
 	Globals.checkpoint_level = current_level.scene_file_path

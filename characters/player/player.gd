@@ -9,12 +9,10 @@ enum State {
 	HIT
 }
 
-#movement constants
+# movement constants
 const SPEED: float = 250
 const ACCELERATION: float = 750
 const DECELERATION: float = 1250
-
-@export var current_level: Node2D
 
 # jump constants
 const JUMP_HEIGHT: float = 75
@@ -36,7 +34,7 @@ var state: State = State.IDLE
 @onready var gravity_descent: float = (JUMP_HEIGHT * 2) / (JUMP_TIME_DESCENT)**2
 
 func _ready() -> void:
-	Globals.RESET.connect(on_reset)
+	Globals.RESET_OBJECTS.connect(on_reset)
 
 func _physics_process(delta: float) -> void:
 	direction_x = Input.get_axis("LEFT", "RIGHT")
@@ -59,7 +57,7 @@ func _physics_process(delta: float) -> void:
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("RESET"):
-		Globals.CHANGE_LEVEL.emit()
+		Globals.RESET_LEVEL.emit()
 
 func _on_hurtbox_area_entered(_area: Area2D) -> void:
 	is_hit = true

@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ctj7ptsgfm2c6"]
+
+[ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="1_cva2o"]
+[ext_resource type="PackedScene" uid="uid://dxfqgiym8jr45" path="res://objects/collectibles/fish/fish.tscn" id="2_3cokv"]
+[ext_resource type="PackedScene" uid="uid://b18k51p75crcn" path="res://characters/enemies/dachshund/dachshund.tscn" id="3_yqegd"]
+[ext_resource type="PackedScene" uid="uid://cbesvvvfn2gk7" path="res://objects/checkpoint/checkpoint.tscn" id="4_phucd"]
+[ext_resource type="PackedScene" uid="uid://4nr617p1k3nx" path="res://levels/level_transition.tscn" id="5_3cokv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d53y8"]
+size = Vector2(218, 58)
+
+[node name="TestLevel2" type="Node2D" unique_id=681220125]
+
+[node name="Player" parent="." unique_id=1077531745 instance=ExtResource("1_cva2o")]
+position = Vector2(304, 248)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1085083560]
+position = Vector2(416, 208)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=556564155]
+position = Vector2(96, 18)
+shape = SubResource("RectangleShape2D_d53y8")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1539603867]
+position = Vector2(0, 256)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=563580670]
+position = Vector2(99, 19)
+shape = SubResource("RectangleShape2D_d53y8")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=745832191]
+position = Vector2(272, 272)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=931389017]
+position = Vector2(96, 18)
+shape = SubResource("RectangleShape2D_d53y8")
+
+[node name="Fish" parent="." unique_id=1270360593 instance=ExtResource("2_3cokv")]
+position = Vector2(489, 159)
+id = 8
+
+[node name="Dachshund" parent="." unique_id=1706440273 instance=ExtResource("3_yqegd")]
+position = Vector2(195, 86)
+direction = 90
+
+[node name="Checkpoint" parent="." unique_id=1104135889 node_paths=PackedStringArray("current_level") instance=ExtResource("4_phucd")]
+position = Vector2(93, 231)
+current_level = NodePath("..")
+
+[node name="LevelTransition" parent="." unique_id=1837528155 instance=ExtResource("5_3cokv")]
+position = Vector2(576, 160)
+level_path = "uid://ddbxmdi4cpi8b"

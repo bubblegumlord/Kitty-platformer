@@ -1,7 +1,8 @@
 extends Node
 
-signal CHANGE_LEVEL()
-signal RESET
+signal CHANGE_LEVEL(level_path: String)
+signal RESET_LEVEL
+signal RESET_OBJECTS
 
 var items: Dictionary[int, bool]
 var saved_items: Dictionary[int, bool]
