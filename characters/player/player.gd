@@ -26,6 +26,8 @@ var is_hit: bool = false
 
 var state: State = State.IDLE
 
+@onready var visuals: Node2D = $Visuals
+@onready var animation_player: AnimationPlayer = $Visuals/AnimationPlayer
 @onready var jump_buffer_timer: Timer = $Timers/JumpBufferTimer
 @onready var coyote_timer: Timer = $Timers/CoyoteTimer
 
@@ -38,6 +40,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	direction_x = Input.get_axis("LEFT", "RIGHT")
+	flip_sprite()
 	
 	match state:
 		State.IDLE:
@@ -65,7 +68,7 @@ func _on_hurtbox_area_entered(_area: Area2D) -> void:
 
 ## STATE MACHINE
 func idle_state() -> void:
-	# play idle
+	animation_player.play("idle")
 	if direction_x != 0 and is_on_floor():
 		state = State.MOVE
 		return
@@ -81,7 +84,7 @@ func idle_state() -> void:
 func move_state(delta: float) -> void:
 	if direction_x != 0:
 		direction_sprite = direction_x
-		# play move
+		animation_player.play("walk")
 		velocity.x = set_speed(true, ACCELERATION * delta)
 	elif direction_x == 0 or not check_turn(velocity.x, direction_x):
 		# play brake
@@ -100,7 +103,7 @@ func move_state(delta: float) -> void:
 		state = State.FALL
 
 func jump_state(delta: float) -> void:
-	# play jump
+	animation_player.play("jump")
 	if direction_x != 0:
 		velocity.x = set_speed(true, ACCELERATION * delta)
 	else:
@@ -119,7 +122,7 @@ func jump_state(delta: float) -> void:
 		state = State.FALL
 
 func fall_state(delta: float) -> void:
-	# play fall 
+	animation_player.play("fall")
 	if direction_x != 0:
 		velocity.x = set_speed(true, ACCELERATION * delta)
 	else:
@@ -150,6 +153,9 @@ func hit_state() -> void:
 		is_hit = false
 
 ## HELPER FUNCTIONS
+func flip_sprite() -> void:
+	visuals.scale.x = direction_sprite
+
 func set_speed(moving: bool, delta: float) -> float:
 	if moving:
 		return move_toward(velocity.x, direction_x * SPEED, delta)
