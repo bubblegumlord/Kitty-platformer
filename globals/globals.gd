@@ -7,6 +7,7 @@ signal RESET_OBJECTS
 var items: Dictionary[int, bool]
 var saved_items: Dictionary[int, bool]
 
+var active_checkpoint_id: int
 var checkpoint_position: Vector2
 var checkpoint_level: String
 var level: String

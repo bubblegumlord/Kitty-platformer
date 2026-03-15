@@ -3,53 +3,44 @@
 [ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="1_mo4vu"]
 [ext_resource type="PackedScene" uid="uid://dxfqgiym8jr45" path="res://objects/collectibles/fish/fish.tscn" id="2_n6wdg"]
 [ext_resource type="PackedScene" uid="uid://b18k51p75crcn" path="res://characters/enemies/dachshund/dachshund.tscn" id="3_dvnjj"]
-[ext_resource type="PackedScene" uid="uid://cbesvvvfn2gk7" path="res://objects/checkpoint/checkpoint.tscn" id="4_1digy"]
+[ext_resource type="PackedScene" uid="uid://cbesvvvfn2gk7" path="res://objects/checkpoint_flag/checkpoint_flag.tscn" id="4_1digy"]
 [ext_resource type="PackedScene" uid="uid://4nr617p1k3nx" path="res://levels/level_transition.tscn" id="5_4her3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x25rp"]
-size = Vector2(218, 58)
+size = Vector2(192, 48)
 
 [node name="TestLevel" type="Node2D" unique_id=1561712556]
 
 [node name="Player" parent="." unique_id=1077531745 instance=ExtResource("1_mo4vu")]
-position = Vector2(32, 232)
+position = Vector2(24, 136)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=769988357]
-position = Vector2(424, 275)
+position = Vector2(96, 168)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=80696491]
-position = Vector2(96, 18)
 shape = SubResource("RectangleShape2D_x25rp")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=145264321]
-position = Vector2(0, 256)
+position = Vector2(240, 128)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=504973816]
-position = Vector2(99, 19)
-shape = SubResource("RectangleShape2D_x25rp")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=498498460]
-position = Vector2(208, 314)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1723725803]
-position = Vector2(96, 18)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1850299795]
 shape = SubResource("RectangleShape2D_x25rp")
 
 [node name="Fish" parent="." unique_id=1270360593 instance=ExtResource("2_n6wdg")]
-position = Vector2(336, 272)
+position = Vector2(112, 128)
 id = 5
 
 [node name="Dachshund" parent="." unique_id=1706440273 instance=ExtResource("3_dvnjj")]
-position = Vector2(128, 128)
+position = Vector2(88, 32)
 direction = 180
 
 [node name="Checkpoint" parent="." unique_id=1104135889 node_paths=PackedStringArray("current_level") instance=ExtResource("4_1digy")]
-position = Vector2(464, 248)
+position = Vector2(200, 96)
 current_level = NodePath("..")
+id = 1
 
 [node name="LevelTransition" parent="." unique_id=1837528155 instance=ExtResource("5_4her3")]
-position = Vector2(592, 232)
+position = Vector2(288, 72)
 level_path = "uid://ctj7ptsgfm2c6"

@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cbesvvvfn2gk7"]
+
+[ext_resource type="Script" uid="uid://cmgbjvyxoeu21" path="res://objects/checkpoint_flag/checkpoint_flag.gd" id="1_aaksu"]
+[ext_resource type="Texture2D" uid="uid://oidavaro3yd3" path="res://objects/checkpoint_flag/checkpoint_flag.png" id="2_kg76h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg76h"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hy4tk"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8eanl"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be0b3"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3jp8"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdpgk"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pmxpm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kg76h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hy4tk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8eanl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_be0b3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3jp8")
+}],
+"loop": true,
+"name": &"active",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdpgk")
+}],
+"loop": true,
+"name": &"not_active",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixyje"]
+radius = 12.0
+
+[node name="CheckpointFlag" type="Area2D" unique_id=1104135889]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_aaksu")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=644682530]
+sprite_frames = SubResource("SpriteFrames_pmxpm")
+animation = &"not_active"
+autoplay = "not_active"
+frame_progress = 0.8052796
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1406270264]
+visible = false
+shape = SubResource("CircleShape2D_ixyje")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

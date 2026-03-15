@@ -1,184 +1,137 @@
 [gd_scene format=3 uid="uid://c73kf3v3hg1so"]
 
 [ext_resource type="Script" uid="uid://br1u3oph6dugm" path="res://characters/player/player.gd" id="1_508ok"]
-[ext_resource type="Texture2D" uid="uid://doqa20w7wkfxy" path="res://characters/player/moze_w_ta_strone2.png" id="2_xxgcw"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_508ok"]
-size = Vector2(26, 12)
+[ext_resource type="Texture2D" uid="uid://8t8wxofatl2p" path="res://characters/player/player.png" id="2_xxgcw"]
 
 [sub_resource type="Animation" id="Animation_xxgcw"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite:scale")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Sprite:skew")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.09599311]
-}
-
-[sub_resource type="Animation" id="Animation_c6leb"]
-resource_name = "fall"
-length = 0.4
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.63, 2.54), Vector2(1.53, 2.605)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Sprite:skew")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.17453292519943295]
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_exd8k"]
-resource_name = "idle"
-length = 0.4
+resource_name = "brake"
+length = 0.1
 loop_mode = 1
-step = 0.05
+step = 0.08
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite:scale")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(2.14, 1.86), Vector2(2, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Sprite:skew")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_ixbpm"]
-resource_name = "jump"
-length = 0.4
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.63, 2.54), Vector2(1.53, 2.605)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Sprite:skew")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.17453292]
+"update": 1,
+"values": [5]
 }
 
 [sub_resource type="Animation" id="Animation_5dc8e"]
-resource_name = "walk"
-length = 0.4
+resource_name = "fall"
+length = 0.2
 loop_mode = 1
-step = 0.05
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite:scale")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(2.14, 1.86), Vector2(2, 2)]
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [14, 15]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Sprite:skew")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+
+[sub_resource type="Animation" id="Animation_ixbpm"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_c6leb"]
+resource_name = "jump"
+length = 0.1
+loop_mode = 1
+step = 0.08
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.09599311]
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_dirf7"]
+resource_name = "run"
+length = 0.45
+loop_mode = 1
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07692308, 0.15384616, 0.23076923, 0.30769232, 0.3846154),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5dc8e"]
 _data = {
 &"RESET": SubResource("Animation_xxgcw"),
-&"fall": SubResource("Animation_c6leb"),
-&"idle": SubResource("Animation_exd8k"),
-&"jump": SubResource("Animation_ixbpm"),
-&"walk": SubResource("Animation_5dc8e")
+&"brake": SubResource("Animation_exd8k"),
+&"fall": SubResource("Animation_5dc8e"),
+&"idle": SubResource("Animation_ixbpm"),
+&"jump": SubResource("Animation_c6leb"),
+&"run": SubResource("Animation_dirf7")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_508ok"]
+size = Vector2(12, 6)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_508ok"]
-radius = 17.0
+radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxgcw"]
-radius = 14.035668
+radius = 6.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1077531745]
 collision_layer = 0
 script = ExtResource("1_508ok")
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=1890657398]
-visible = false
-position = Vector2(1, 10)
-shape = SubResource("RectangleShape2D_508ok")
-
 [node name="Visuals" type="Node2D" parent="." unique_id=765438582]
-position = Vector2(0, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" unique_id=1398550217]
 root_node = NodePath("../..")
@@ -186,12 +139,14 @@ libraries/ = SubResource("AnimationLibrary_5dc8e")
 autoplay = &"idle"
 
 [node name="Sprite" type="Sprite2D" parent="Visuals" unique_id=162866938]
-scale = Vector2(2, 2)
-skew = 0.09599311
 texture = ExtResource("2_xxgcw")
-offset = Vector2(0, -8)
-hframes = 8
-vframes = 8
+hframes = 6
+vframes = 4
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1890657398]
+visible = false
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_508ok")
 
 [node name="Hitboxes" type="Node2D" parent="." unique_id=7215113]
 
@@ -209,6 +164,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="Collision" type="CollisionShape2D" parent="Hitboxes/Hurtbox" unique_id=1968168146]
+position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_xxgcw")
 
 [node name="Timers" type="Node2D" parent="." unique_id=1707075624]

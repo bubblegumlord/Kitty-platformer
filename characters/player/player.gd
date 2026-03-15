@@ -26,7 +26,7 @@ var is_hit: bool = false
 
 var state: State = State.IDLE
 
-@onready var visuals: Node2D = $Visuals
+@onready var sprite: Node2D = $Visuals/Sprite
 @onready var animation_player: AnimationPlayer = $Visuals/AnimationPlayer
 @onready var jump_buffer_timer: Timer = $Timers/JumpBufferTimer
 @onready var coyote_timer: Timer = $Timers/CoyoteTimer
@@ -82,12 +82,16 @@ func idle_state() -> void:
 		state = State.FALL
 
 func move_state(delta: float) -> void:
+	if check_turn(velocity.x, direction_sprite):
+		animation_player.play("run")
+	else:
+		animation_player.play("brake")
+		sprite.flip_h = !sprite.flip_h
+	
 	if direction_x != 0:
 		direction_sprite = direction_x
-		animation_player.play("walk")
 		velocity.x = set_speed(true, ACCELERATION * delta)
-	elif direction_x == 0 or not check_turn(velocity.x, direction_x):
-		# play brake
+	else:
 		velocity.x = set_speed(false, DECELERATION * delta)
 	
 	if direction_x == 0 and velocity.x == 0 and is_on_floor():
@@ -154,7 +158,10 @@ func hit_state() -> void:
 
 ## HELPER FUNCTIONS
 func flip_sprite() -> void:
-	visuals.scale.x = direction_sprite
+	if direction_sprite > 0:
+		sprite.flip_h = false
+	else:
+		sprite.flip_h = true
 
 func set_speed(moving: bool, delta: float) -> float:
 	if moving:
@@ -169,9 +176,7 @@ func set_gravity() -> float:
 		return gravity_descent
 
 func check_turn(player_velocity: float, direction: float) -> bool:
-	if player_velocity < 0 and direction < 0:
-		return true
-	elif player_velocity > 0 and direction > 0:
+	if player_velocity * direction >= 0:
 		return true
 	else:
 		return false
