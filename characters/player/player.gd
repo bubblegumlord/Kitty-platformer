@@ -10,12 +10,12 @@ enum State {
 }
 
 # movement constants
-const SPEED: float = 250
-const ACCELERATION: float = 750
-const DECELERATION: float = 1250
+const SPEED: float = 160
+const ACCELERATION: float = 480
+const DECELERATION: float = 800
 
 # jump constants
-const JUMP_HEIGHT: float = 75
+const JUMP_HEIGHT: float = 60
 const JUMP_TIME_PEAK: float = 0.35
 const JUMP_TIME_DESCENT: float = 0.25
 
@@ -147,12 +147,12 @@ func fall_state(delta: float) -> void:
 			state = State.MOVE
 
 func hit_state() -> void:
-	# play hit
+	animation_player.play("hit")
 	if is_on_floor() and not is_hit:
 		state = State.MOVE
 	
 	if is_hit:
-		velocity.x = -1 * direction_sprite * 200
+		velocity.x = -1 * direction_sprite * SPEED
 		velocity.y = jump_velocity
 		is_hit = false
 

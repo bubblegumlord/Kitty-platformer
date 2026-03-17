@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cmgbjvyxoeu21" path="res://objects/checkpoint_flag/checkpoint_flag.gd" id="1_aaksu"]
 [ext_resource type="Texture2D" uid="uid://oidavaro3yd3" path="res://objects/checkpoint_flag/checkpoint_flag.png" id="2_kg76h"]
+[ext_resource type="Texture2D" uid="uid://bip0ebs0ftak" path="res://objects/checkpoint_flag/sparkle_effect.png" id="3_hy4tk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kg76h"]
 atlas = ExtResource("2_kg76h")
@@ -27,6 +28,30 @@ region = Rect2(0, 32, 16, 16)
 atlas = ExtResource("2_kg76h")
 region = Rect2(16, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmxpm"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66wwc"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qp2gw"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8npe7"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30iy0"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfvi8"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(48, 32, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_pmxpm"]
 animations = [{
 "frames": [{
@@ -46,7 +71,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_a3jp8")
 }],
 "loop": true,
-"name": &"active",
+"name": &"is_active",
 "speed": 12.0
 }, {
 "frames": [{
@@ -56,10 +81,95 @@ animations = [{
 "loop": true,
 "name": &"not_active",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmxpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66wwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qp2gw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8npe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30iy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfvi8")
+}],
+"loop": false,
+"name": &"set_active",
+"speed": 16.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ixyje"]
-radius = 12.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e14q"]
+atlas = ExtResource("3_hy4tk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lpht"]
+atlas = ExtResource("3_hy4tk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnne0"]
+atlas = ExtResource("3_hy4tk")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi3l2"]
+atlas = ExtResource("3_hy4tk")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o27l"]
+atlas = ExtResource("3_hy4tk")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7ecy"]
+atlas = ExtResource("3_hy4tk")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yexum"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3e14q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lpht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnne0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi3l2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7o27l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7ecy")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"sparkle",
+"speed": 16.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hy4tk"]
+size = Vector2(12, 16)
 
 [node name="CheckpointFlag" type="Area2D" unique_id=1104135889]
 collision_layer = 0
@@ -70,10 +180,17 @@ script = ExtResource("1_aaksu")
 sprite_frames = SubResource("SpriteFrames_pmxpm")
 animation = &"not_active"
 autoplay = "not_active"
-frame_progress = 0.8052796
+
+[node name="Sparkle" type="AnimatedSprite2D" parent="." unique_id=1121866393]
+position = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_yexum")
+animation = &"sparkle"
+frame = 9
+frame_progress = 1.0
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1406270264]
 visible = false
-shape = SubResource("CircleShape2D_ixyje")
+shape = SubResource("RectangleShape2D_hy4tk")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

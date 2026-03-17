@@ -4,7 +4,7 @@ extends Area2D
 
 func _ready() -> void:
 	if id == 0:
-		push_warning("Ryba %s niewłaściwe ID" % global_position)
+		push_warning("Kropelka %s niewłaściwe ID" % global_position)
 	
 	if Globals.items[id] == true:
 		queue_free()

@@ -19,7 +19,7 @@ func on_reset() -> void:
 	path_to_level = load(Globals.checkpoint_level)
 	loaded_level = path_to_level.instantiate()
 	call_deferred("add_child", loaded_level)
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.05).timeout
 	Globals.RESET_OBJECTS.emit()
 
 func level_transition(level_path: String) -> void:
