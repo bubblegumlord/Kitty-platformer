@@ -23,6 +23,7 @@ var direction_x: float
 var direction_sprite: float = 1
 var coyote_active: bool = false
 var is_hit: bool = false
+var can_count_jump: bool = true
 
 var state: State = State.IDLE
 
@@ -73,9 +74,10 @@ func idle_state() -> void:
 		state = State.MOVE
 		return
 	
-	if Input.is_action_just_pressed("JUMP"):
+	if Input.is_action_just_pressed("JUMP") and Globals.jump_count > 0:
 		jump_buffer_timer.start()
 		state = State.JUMP
+		Globals.jump_count -= 1
 		return
 	
 	if not is_on_floor() and velocity.y > 0:
@@ -98,15 +100,17 @@ func move_state(delta: float) -> void:
 		state = State.IDLE
 		return
 	
-	if Input.is_action_just_pressed("JUMP"):
+	if Input.is_action_just_pressed("JUMP") and Globals.jump_count > 0:
 		jump_buffer_timer.start()
 		state = State.JUMP
+		Globals.jump_count -= 1
 		return
 	
 	if not is_on_floor() and velocity.y > 0:
 		state = State.FALL
 
 func jump_state(delta: float) -> void:
+	print(Globals.jump_count)
 	animation_player.play("jump")
 	if direction_x != 0:
 		velocity.x = set_speed(true, ACCELERATION * delta)
@@ -136,8 +140,9 @@ func fall_state(delta: float) -> void:
 		jump_buffer_timer.start()
 	
 	if not jump_buffer_timer.is_stopped():
-		if is_on_floor() or not coyote_timer.is_stopped():
+		if (is_on_floor() or not coyote_timer.is_stopped()) and Globals.jump_count:
 			state = State.JUMP
+			Globals.jump_count -= 1
 			return
 	
 	if is_on_floor():

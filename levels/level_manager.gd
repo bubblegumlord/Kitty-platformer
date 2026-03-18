@@ -20,6 +20,7 @@ func on_reset() -> void:
 	loaded_level = path_to_level.instantiate()
 	call_deferred("add_child", loaded_level)
 	await get_tree().create_timer(0.05).timeout
+	Globals.jump_count = 5
 	Globals.RESET_OBJECTS.emit()
 
 func level_transition(level_path: String) -> void:

@@ -12,6 +12,8 @@ var checkpoint_position: Vector2
 var checkpoint_level: String
 var level: String
 
+var jump_count: int = 5
+
 func _ready() -> void:
 	for i: int in range(1,100):
 		items[i] = false
