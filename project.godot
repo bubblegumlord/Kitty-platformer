@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Kitty Platform"
+config/name="Flower Platform"
 run/main_scene="uid://crei2yb8kiiqe"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -94,7 +94,7 @@ RESET={
 
 [layer_names]
 
-2d_physics/layer_1="WorldCollision"
+2d_physics/layer_1="PlayerCollision"
 2d_physics/layer_2="Collectibles"
 2d_physics/layer_3="PlayerHurtbox"
 

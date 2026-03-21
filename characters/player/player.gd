@@ -6,7 +6,8 @@ enum State {
 	MOVE,
 	JUMP,
 	FALL,
-	HIT
+	LADDER,
+	HIT,
 }
 
 # movement constants
@@ -24,6 +25,7 @@ var direction_sprite: float = 1
 var coyote_active: bool = false
 var is_hit: bool = false
 var can_count_jump: bool = true
+var can_climb: bool = false
 
 var state: State = State.IDLE
 

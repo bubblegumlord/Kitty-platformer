@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://5qwa54fye20k"]
+
+[ext_resource type="Script" uid="uid://dknjyy843os7q" path="res://characters/enemies/fly/fly.gd" id="1_3l1og"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftsra"]
+radius = 5.0
+
+[node name="Fly" type="Area2D" unique_id=1560395568]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_3l1og")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1950155350]
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=495997579]
+shape = SubResource("CircleShape2D_ftsra")
+debug_color = Color(1, 1, 1, 0.41960785)
