@@ -12,6 +12,8 @@ var checkpoint_position: Vector2
 var checkpoint_level: String
 var level: String
 
+var can_reset: bool = false
+
 var jump_count: int = 5
 
 func _ready() -> void:
@@ -19,3 +21,7 @@ func _ready() -> void:
 		items[i] = false
 	
 	saved_items = items
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("RESET") and can_reset:
+		RESET_LEVEL.emit()

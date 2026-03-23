@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b18k51p75crcn" path="res://characters/enemies/dachshund/dachshund.tscn" id="3_dvnjj"]
 [ext_resource type="PackedScene" uid="uid://cbesvvvfn2gk7" path="res://objects/checkpoint_flag/checkpoint_flag.tscn" id="4_1digy"]
 [ext_resource type="PackedScene" uid="uid://4nr617p1k3nx" path="res://levels/level_transition.tscn" id="5_4her3"]
+[ext_resource type="PackedScene" uid="uid://7fxi1w8re56g" path="res://objects/ladder/ladder.tscn" id="6_n6wdg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x25rp"]
 size = Vector2(192, 48)
@@ -44,3 +45,6 @@ id = 1
 [node name="LevelTransition" parent="." unique_id=1837528155 instance=ExtResource("5_4her3")]
 position = Vector2(288, 72)
 level_path = "uid://ctj7ptsgfm2c6"
+
+[node name="Ladder" parent="." unique_id=1564712257 instance=ExtResource("6_n6wdg")]
+position = Vector2(136, 124)

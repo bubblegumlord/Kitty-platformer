@@ -6,7 +6,7 @@ enum State {
 	MOVE,
 	JUMP,
 	FALL,
-	LADDER,
+	CLIMB,
 	HIT,
 }
 
@@ -21,6 +21,7 @@ const JUMP_TIME_PEAK: float = 0.35
 const JUMP_TIME_DESCENT: float = 0.25
 
 var direction_x: float
+var direction_y: float
 var direction_sprite: float = 1
 var coyote_active: bool = false
 var is_hit: bool = false
@@ -43,7 +44,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	direction_x = Input.get_axis("LEFT", "RIGHT")
-	flip_sprite()
+	direction_y = Input.get_axis("UP", "DOWN")
 	
 	match state:
 		State.IDLE:
@@ -54,20 +55,25 @@ func _physics_process(delta: float) -> void:
 			jump_state(delta)
 		State.FALL:
 			fall_state(delta)
+		State.CLIMB:
+			climb_state(delta)
 		State.HIT:
 			hit_state()
 	
-	velocity.y += set_gravity() * delta
+	if state != State.CLIMB:
+		velocity.y += set_gravity() * delta
+	
 	check_coyote()
 	move_and_slide()
-
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("RESET"):
-		Globals.RESET_LEVEL.emit()
 
 func _on_hurtbox_area_entered(_area: Area2D) -> void:
 	is_hit = true
 	state = State.HIT
+
+func on_reset() -> void:
+	global_position = Globals.checkpoint_position
+	velocity = Vector2.ZERO
+	state = State.IDLE
 
 ## STATE MACHINE
 func idle_state() -> void:
@@ -82,21 +88,29 @@ func idle_state() -> void:
 		Globals.jump_count -= 1
 		return
 	
+	if direction_y != 0 and can_climb:
+		state = State.CLIMB
+		return
+	
 	if not is_on_floor() and velocity.y > 0:
 		state = State.FALL
 
 func move_state(delta: float) -> void:
-	if check_turn(velocity.x, direction_sprite):
+	if direction_x != 0:
+		direction_sprite = direction_x
+	
+	if direction_sprite > 0:
+		sprite.flip_h = false
+	else:
+		sprite.flip_h = true
+	
+	if velocity.x * direction_sprite >= 0:
 		animation_player.play("run")
 	else:
 		animation_player.play("brake")
 		sprite.flip_h = !sprite.flip_h
 	
-	if direction_x != 0:
-		direction_sprite = direction_x
-		velocity.x = set_speed(true, ACCELERATION * delta)
-	else:
-		velocity.x = set_speed(false, DECELERATION * delta)
+	velocity.x = set_speed(direction_x, velocity.x, ACCELERATION * delta, DECELERATION * delta)
 	
 	if direction_x == 0 and velocity.x == 0 and is_on_floor():
 		state = State.IDLE
@@ -112,12 +126,9 @@ func move_state(delta: float) -> void:
 		state = State.FALL
 
 func jump_state(delta: float) -> void:
-	print(Globals.jump_count)
 	animation_player.play("jump")
-	if direction_x != 0:
-		velocity.x = set_speed(true, ACCELERATION * delta)
-	else:
-		velocity.x = set_speed(false, 0.1 * DECELERATION * delta)
+	
+	velocity.x = set_speed(direction_x, velocity.x, ACCELERATION * delta, 0.1 * DECELERATION * delta)
 	
 	if Input.is_action_just_pressed("JUMP"):
 		jump_buffer_timer.start()
@@ -133,10 +144,8 @@ func jump_state(delta: float) -> void:
 
 func fall_state(delta: float) -> void:
 	animation_player.play("fall")
-	if direction_x != 0:
-		velocity.x = set_speed(true, ACCELERATION * delta)
-	else:
-		velocity.x = set_speed(false, 0.1 * DECELERATION * delta)
+	
+	velocity.x = set_speed(direction_x, velocity.x, ACCELERATION * delta, 0.1 * DECELERATION * delta)
 	
 	if Input.is_action_just_pressed("JUMP"):
 		jump_buffer_timer.start()
@@ -153,6 +162,26 @@ func fall_state(delta: float) -> void:
 		else:
 			state = State.MOVE
 
+func climb_state(delta: float) -> void:
+	# animation play climb
+	
+	velocity.y = set_speed(direction_y, velocity.y, ACCELERATION, DECELERATION)
+	velocity.x = set_speed(direction_x, velocity.x, ACCELERATION * delta, DECELERATION * delta)
+	
+	if Input.is_action_just_pressed("JUMP") and Globals.jump_count > 0:
+		jump_buffer_timer.start()
+		state = State.JUMP
+		Globals.jump_count -= 1
+		return
+	
+	if not can_climb:
+		if is_on_floor():
+			state = State.IDLE
+		else:
+			state = State.FALL
+		
+		velocity.y = 0
+
 func hit_state() -> void:
 	animation_player.play("hit")
 	if is_on_floor() and not is_hit:
@@ -164,29 +193,17 @@ func hit_state() -> void:
 		is_hit = false
 
 ## HELPER FUNCTIONS
-func flip_sprite() -> void:
-	if direction_sprite > 0:
-		sprite.flip_h = false
+func set_speed(direction: float, velocity_axis: float, acceleration: float, deceleration: float) -> float:
+	if direction != 0:
+		return move_toward(velocity_axis, direction * SPEED, acceleration)
 	else:
-		sprite.flip_h = true
-
-func set_speed(moving: bool, delta: float) -> float:
-	if moving:
-		return move_toward(velocity.x, direction_x * SPEED, delta)
-	else:
-		return move_toward(velocity.x, 0, delta)
+		return move_toward(velocity_axis, 0, deceleration)
 
 func set_gravity() -> float:
 	if velocity.y < 0:
 		return gravity_peak
 	else:
 		return gravity_descent
-
-func check_turn(player_velocity: float, direction: float) -> bool:
-	if player_velocity * direction >= 0:
-		return true
-	else:
-		return false
 
 func check_coyote() -> void:
 	if is_on_floor():
@@ -197,8 +214,3 @@ func check_coyote() -> void:
 		if !coyote_active:
 			coyote_timer.start()
 			coyote_active = true
-
-func on_reset() -> void:
-	global_position = Globals.checkpoint_position
-	velocity = Vector2.ZERO
-	state = State.IDLE

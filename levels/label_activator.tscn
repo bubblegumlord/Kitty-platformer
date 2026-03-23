@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://8u26l8gr1g5j"]
+
+[ext_resource type="Script" uid="uid://bt7lwfytx0bhe" path="res://levels/label_activator.gd" id="1_otyu2"]
+
+[node name="LabelActivator" type="Area2D" unique_id=1799682618]
+collision_mask = 0
+script = ExtResource("1_otyu2")
+label_text = "Siemano kolano"
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1659513788]
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=1354518476]
+offset_right = 320.0
+offset_bottom = 176.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://trmuwa0f5sa2"]
+
+[ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="1_v76ri"]
+[ext_resource type="PackedScene" uid="uid://dxfqgiym8jr45" path="res://objects/collectibles/droplet/droplet.tscn" id="2_w1a5e"]
+
+[node name="Level1-1" type="Node2D" unique_id=1363328595]
+
+[node name="WorldCollision" type="StaticBody2D" parent="." unique_id=68167334]
+
+[node name="Collision" type="CollisionPolygon2D" parent="WorldCollision" unique_id=1356310531]
+polygon = PackedVector2Array(0, 184, 0, 136, 320, 136, 320, 184)
+
+[node name="Player" parent="." unique_id=1077531745 instance=ExtResource("1_v76ri")]
+position = Vector2(16, 128)
+
+[node name="Droplet" parent="." unique_id=1270360593 instance=ExtResource("2_w1a5e")]
+position = Vector2(96, 104)
+id = 1
