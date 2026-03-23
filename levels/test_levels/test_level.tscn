@@ -12,9 +12,6 @@ size = Vector2(192, 48)
 
 [node name="TestLevel" type="Node2D" unique_id=1561712556]
 
-[node name="Player" parent="." unique_id=1077531745 instance=ExtResource("1_mo4vu")]
-position = Vector2(24, 136)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=769988357]
 position = Vector2(96, 168)
 collision_mask = 0
@@ -30,7 +27,7 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_x25rp")
 
 [node name="Fish" parent="." unique_id=1270360593 instance=ExtResource("2_n6wdg")]
-position = Vector2(112, 128)
+position = Vector2(64, 64)
 id = 5
 
 [node name="Dachshund" parent="." unique_id=1706440273 instance=ExtResource("3_dvnjj")]
@@ -47,4 +44,8 @@ position = Vector2(288, 72)
 level_path = "uid://ctj7ptsgfm2c6"
 
 [node name="Ladder" parent="." unique_id=1564712257 instance=ExtResource("6_n6wdg")]
-position = Vector2(136, 124)
+position = Vector2(136, 120)
+length = 3
+
+[node name="Player" parent="." unique_id=1077531745 instance=ExtResource("1_mo4vu")]
+position = Vector2(24, 136)

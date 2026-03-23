@@ -171,16 +171,12 @@ func climb_state(delta: float) -> void:
 	if Input.is_action_just_pressed("JUMP") and Globals.jump_count > 0:
 		jump_buffer_timer.start()
 		state = State.JUMP
+		velocity.y = jump_velocity
 		Globals.jump_count -= 1
 		return
 	
 	if not can_climb:
-		if is_on_floor():
-			state = State.IDLE
-		else:
-			state = State.FALL
-		
-		velocity.y = 0
+		state = State.FALL
 
 func hit_state() -> void:
 	animation_player.play("hit")

@@ -14,7 +14,7 @@ var level: String
 
 var can_reset: bool = false
 
-var jump_count: int = 5
+var jump_count: int = 50000
 
 func _ready() -> void:
 	for i: int in range(1,100):
