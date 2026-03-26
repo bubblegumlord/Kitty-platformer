@@ -1,9 +1,49 @@
 [gd_scene format=3 uid="uid://5qwa54fye20k"]
 
 [ext_resource type="Script" uid="uid://dknjyy843os7q" path="res://characters/enemies/fly/fly.gd" id="1_3l1og"]
+[ext_resource type="Texture2D" uid="uid://dls25irlj8d3p" path="res://characters/enemies/fly/fly.png" id="2_ixt75"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdm0n"]
+atlas = ExtResource("2_ixt75")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxbkk"]
+atlas = ExtResource("2_ixt75")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4nyx"]
+atlas = ExtResource("2_ixt75")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl2jx"]
+atlas = ExtResource("2_ixt75")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ngqba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdm0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxbkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4nyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nl2jx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftsra"]
-radius = 5.0
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixt75"]
+radius = 50.0
 
 [node name="Fly" type="Area2D" unique_id=1560395568]
 collision_layer = 4
@@ -11,7 +51,14 @@ collision_mask = 0
 script = ExtResource("1_3l1og")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1950155350]
+sprite_frames = SubResource("SpriteFrames_ngqba")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=495997579]
 shape = SubResource("CircleShape2D_ftsra")
 debug_color = Color(1, 1, 1, 0.41960785)
+
+[node name="Radius" type="CollisionShape2D" parent="." unique_id=1867926951]
+shape = SubResource("CircleShape2D_ixt75")
+disabled = true

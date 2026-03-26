@@ -1,11 +1,16 @@
 extends Area2D
 
-var time: float = 0.0
-var speed: float = 3
-var distance_from_center: float = 50
+var speed: float = 1.5
+var orbit_radius: float = 50
+var angle: float
+var offset_vector: Vector2
+
+@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var center_position: Vector2 = global_position
 
 func _physics_process(delta: float) -> void:
-	time += delta
-	var angle: float = speed * time
-	var move_rotation: Vector2 = Vector2(cos(angle), sin(angle))
-	position = move_rotation * distance_from_center
+	angle += speed * delta
+	offset_vector = Vector2(cos(angle), sin(angle)) * orbit_radius
+	global_position = center_position + offset_vector 
+	
+	sprite.flip_h = offset_vector.y < 0

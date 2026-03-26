@@ -17,9 +17,10 @@ radius = 8.0
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_4abgs")
+direction = Vector2(0, 1)
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=10964248]
-position = Vector2(0, -8)
+position = Vector2(8, -8)
 scale = Vector2(1, 16)
 texture = SubResource("GradientTexture1D_p11a2")
 
@@ -27,7 +28,6 @@ texture = SubResource("GradientTexture1D_p11a2")
 shape = SubResource("CircleShape2D_0r2sl")
 
 [node name="Timer" type="Timer" parent="." unique_id=136672275]
-wait_time = 1.2
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

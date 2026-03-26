@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="1_mo4vu"]
 [ext_resource type="PackedScene" uid="uid://dxfqgiym8jr45" path="res://objects/collectibles/droplet/droplet.tscn" id="2_n6wdg"]
-[ext_resource type="PackedScene" uid="uid://b18k51p75crcn" path="res://characters/enemies/dachshund/dachshund.tscn" id="3_dvnjj"]
 [ext_resource type="PackedScene" uid="uid://cbesvvvfn2gk7" path="res://objects/checkpoint_flag/checkpoint_flag.tscn" id="4_1digy"]
 [ext_resource type="PackedScene" uid="uid://4nr617p1k3nx" path="res://levels/level_transition.tscn" id="5_4her3"]
+[ext_resource type="PackedScene" uid="uid://5qwa54fye20k" path="res://characters/enemies/fly/fly.tscn" id="6_dvnjj"]
 [ext_resource type="PackedScene" uid="uid://7fxi1w8re56g" path="res://objects/ladder/ladder.tscn" id="6_n6wdg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x25rp"]
@@ -30,10 +30,6 @@ shape = SubResource("RectangleShape2D_x25rp")
 position = Vector2(64, 64)
 id = 5
 
-[node name="Dachshund" parent="." unique_id=1706440273 instance=ExtResource("3_dvnjj")]
-position = Vector2(88, 32)
-direction = 180
-
 [node name="Checkpoint" parent="." unique_id=1104135889 node_paths=PackedStringArray("current_level") instance=ExtResource("4_1digy")]
 position = Vector2(200, 96)
 current_level = NodePath("..")
@@ -49,3 +45,6 @@ length = 3
 
 [node name="Player" parent="." unique_id=1077531745 instance=ExtResource("1_mo4vu")]
 position = Vector2(24, 136)
+
+[node name="Fly" parent="." unique_id=1560395568 instance=ExtResource("6_dvnjj")]
+position = Vector2(152, 80)
