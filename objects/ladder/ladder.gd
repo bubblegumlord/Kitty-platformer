@@ -1,13 +1,15 @@
 extends Area2D
 
-const TILE_SIZE: int = 16
+const TILE_SIZE: float = 16
 
-@export var length: int = 1
+@export var length: float = 1
 
 @onready var collision: CollisionShape2D = $Collision
 @onready var sprite: Sprite2D = $Sprite
 
 func _ready() -> void:
+	sprite.position = Vector2(0, 8 - (TILE_SIZE * length)/2)
+	collision.position = sprite.position
 	sprite.region_rect = Rect2(0, 0, TILE_SIZE, TILE_SIZE * length)
 	collision.shape.size = Vector2(2, TILE_SIZE * length)
 

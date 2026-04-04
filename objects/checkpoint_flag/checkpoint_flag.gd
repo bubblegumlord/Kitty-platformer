@@ -35,7 +35,6 @@ func _on_area_entered(_area: Area2D) -> void:
 	if Globals.checkpoint_position != global_position:
 		Globals.checkpoint_position = global_position
 
-
 func _on_sprite_animation_finished() -> void:
 	if sprite.animation == "set_active":
 		sprite.play("is_active")

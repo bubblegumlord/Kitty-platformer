@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="1_cva2o"]
 [ext_resource type="PackedScene" uid="uid://dxfqgiym8jr45" path="res://objects/collectibles/droplet/droplet.tscn" id="2_3cokv"]
-[ext_resource type="PackedScene" uid="uid://b18k51p75crcn" path="res://characters/enemies/dachshund/dachshund.tscn" id="3_yqegd"]
+[ext_resource type="PackedScene" uid="uid://b18k51p75crcn" path="res://characters/enemies/snail/snail.tscn" id="3_yqegd"]
 [ext_resource type="PackedScene" uid="uid://cbesvvvfn2gk7" path="res://objects/checkpoint_flag/checkpoint_flag.tscn" id="4_phucd"]
 [ext_resource type="PackedScene" uid="uid://4nr617p1k3nx" path="res://levels/level_transition.tscn" id="5_3cokv"]
 

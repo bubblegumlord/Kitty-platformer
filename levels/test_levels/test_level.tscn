@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://4nr617p1k3nx" path="res://levels/level_transition.tscn" id="5_4her3"]
 [ext_resource type="PackedScene" uid="uid://5qwa54fye20k" path="res://characters/enemies/fly/fly.tscn" id="6_dvnjj"]
 [ext_resource type="PackedScene" uid="uid://7fxi1w8re56g" path="res://objects/ladder/ladder.tscn" id="6_n6wdg"]
+[ext_resource type="PackedScene" uid="uid://cfjlg7so2dcdu" path="res://characters/enemies/house_spider/house_spider.tscn" id="7_dvnjj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x25rp"]
 size = Vector2(192, 48)
@@ -26,7 +27,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1850299795]
 shape = SubResource("RectangleShape2D_x25rp")
 
-[node name="Fish" parent="." unique_id=1270360593 instance=ExtResource("2_n6wdg")]
+[node name="Droplet" parent="." unique_id=1270360593 instance=ExtResource("2_n6wdg")]
 position = Vector2(64, 64)
 id = 5
 
@@ -40,11 +41,14 @@ position = Vector2(288, 72)
 level_path = "uid://ctj7ptsgfm2c6"
 
 [node name="Ladder" parent="." unique_id=1564712257 instance=ExtResource("6_n6wdg")]
-position = Vector2(136, 120)
-length = 3
-
-[node name="Player" parent="." unique_id=1077531745 instance=ExtResource("1_mo4vu")]
-position = Vector2(24, 136)
+position = Vector2(136, 136)
+length = 3.0
 
 [node name="Fly" parent="." unique_id=1560395568 instance=ExtResource("6_dvnjj")]
 position = Vector2(152, 80)
+
+[node name="HouseSpider" parent="." unique_id=717715883 instance=ExtResource("7_dvnjj")]
+position = Vector2(64, 36)
+
+[node name="Player" parent="." unique_id=1077531745 instance=ExtResource("1_mo4vu")]
+position = Vector2(24, 136)

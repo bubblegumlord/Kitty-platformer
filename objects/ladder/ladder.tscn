@@ -12,14 +12,11 @@ script = ExtResource("1_emhdj")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=55238971]
 texture_repeat = 2
-position = Vector2(40, -24)
 texture = ExtResource("2_ouy41")
-offset = Vector2(-40, 24)
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=444874077]
-visible = false
 shape = SubResource("RectangleShape2D_4vdww")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

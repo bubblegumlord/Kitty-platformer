@@ -4,41 +4,37 @@
 [ext_resource type="Texture2D" uid="uid://oidavaro3yd3" path="res://objects/checkpoint_flag/checkpoint_flag.png" id="2_kg76h"]
 [ext_resource type="Texture2D" uid="uid://bip0ebs0ftak" path="res://objects/checkpoint_flag/sparkle_effect.png" id="3_hy4tk"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kg76h"]
-atlas = ExtResource("2_kg76h")
-region = Rect2(0, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_hy4tk"]
 atlas = ExtResource("2_kg76h")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8eanl"]
 atlas = ExtResource("2_kg76h")
-region = Rect2(0, 16, 16, 16)
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_be0b3"]
 atlas = ExtResource("2_kg76h")
-region = Rect2(16, 16, 16, 16)
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a3jp8"]
 atlas = ExtResource("2_kg76h")
-region = Rect2(0, 32, 16, 16)
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdpgk"]
 atlas = ExtResource("2_kg76h")
-region = Rect2(16, 32, 16, 16)
+region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pmxpm"]
 atlas = ExtResource("2_kg76h")
-region = Rect2(32, 0, 16, 16)
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66wwc"]
 atlas = ExtResource("2_kg76h")
-region = Rect2(48, 0, 16, 16)
+region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qp2gw"]
 atlas = ExtResource("2_kg76h")
-region = Rect2(48, 16, 16, 16)
+region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8npe7"]
 atlas = ExtResource("2_kg76h")
@@ -46,18 +42,19 @@ region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_30iy0"]
 atlas = ExtResource("2_kg76h")
-region = Rect2(32, 32, 16, 16)
+region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rfvi8"]
 atlas = ExtResource("2_kg76h")
-region = Rect2(48, 32, 16, 16)
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yexum"]
+atlas = ExtResource("2_kg76h")
+region = Rect2(80, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pmxpm"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kg76h")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hy4tk")
 }, {
@@ -69,6 +66,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a3jp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdpgk")
 }],
 "loop": true,
 "name": &"is_active",
@@ -76,16 +76,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kdpgk")
+"texture": SubResource("AtlasTexture_pmxpm")
 }],
 "loop": true,
 "name": &"not_active",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pmxpm")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_66wwc")
 }, {
@@ -100,6 +97,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rfvi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yexum")
 }],
 "loop": false,
 "name": &"set_active",
@@ -178,8 +178,10 @@ script = ExtResource("1_aaksu")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=644682530]
 sprite_frames = SubResource("SpriteFrames_pmxpm")
-animation = &"not_active"
+animation = &"set_active"
 autoplay = "not_active"
+frame = 5
+frame_progress = 1.0
 
 [node name="Sparkle" type="AnimatedSprite2D" parent="." unique_id=1121866393]
 position = Vector2(1, -1)

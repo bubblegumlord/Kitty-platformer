@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://cfjlg7so2dcdu"]
+
+[ext_resource type="Script" uid="uid://bhbtiyjam807y" path="res://characters/enemies/house_spider/house_spider.gd" id="1_fo8ir"]
+[ext_resource type="Texture2D" uid="uid://oux27c6oij20" path="res://characters/enemies/house_spider/house_spider.png" id="2_ai4pf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul4sw"]
+atlas = ExtResource("2_ai4pf")
+region = Rect2(24, 0, 12, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b2uw"]
+atlas = ExtResource("2_ai4pf")
+region = Rect2(36, 0, 12, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpvcu"]
+atlas = ExtResource("2_ai4pf")
+region = Rect2(48, 0, 12, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hilrw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul4sw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1b2uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpvcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1b2uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul4sw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul4sw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul4sw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul4sw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul4sw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul4sw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ai4pf"]
+radius = 9.0
+
+[node name="HouseSpider" type="Area2D" unique_id=717715883]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_fo8ir")
+
+[node name="Sprites" type="Node2D" parent="." unique_id=1741133758]
+
+[node name="LeftLegs" type="AnimatedSprite2D" parent="Sprites" unique_id=1287514380]
+position = Vector2(-8, 0)
+sprite_frames = SubResource("SpriteFrames_hilrw")
+autoplay = "default"
+
+[node name="RightLegs" type="AnimatedSprite2D" parent="Sprites" unique_id=937644593]
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_hilrw")
+autoplay = "default"
+flip_h = true
+
+[node name="Body" type="Sprite2D" parent="Sprites" unique_id=1435024912]
+texture = ExtResource("2_ai4pf")
+hframes = 3
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=586497598]
+shape = SubResource("CircleShape2D_ai4pf")
+debug_color = Color(0.64785945, 0, 0.035088856, 0.41960785)
+
+[node name="Net" type="Sprite2D" parent="." unique_id=1083612456]
+texture_repeat = 2
+position = Vector2(0, -24)
+texture = ExtResource("2_ai4pf")
+region_enabled = true
+region_rect = Rect2(60, 0, 12, 24)
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=897485014]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
