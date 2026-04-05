@@ -108,7 +108,6 @@ func move_state(delta: float) -> void:
 		animation_player.play("run")
 	else:
 		animation_player.play("brake")
-		sprite.flip_h = !sprite.flip_h
 	
 	velocity.x = set_speed(direction_x, velocity.x, ACCELERATION * delta, DECELERATION * delta)
 	
