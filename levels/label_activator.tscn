@@ -2,15 +2,26 @@
 
 [ext_resource type="Script" uid="uid://bt7lwfytx0bhe" path="res://levels/label_activator.gd" id="1_otyu2"]
 
+[sub_resource type="Theme" id="Theme_otyu2"]
+
 [node name="LabelActivator" type="Area2D" unique_id=1799682618]
-collision_mask = 0
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_otyu2")
 label_text = "Siemano kolano"
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=1659513788]
-
 [node name="Label" type="RichTextLabel" parent="." unique_id=1354518476]
-offset_right = 320.0
-offset_bottom = 176.0
+offset_left = -128.0
+offset_top = -88.0
+offset_right = 128.0
+theme = SubResource("Theme_otyu2")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 8
+text = "123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+^to jest 250 znaków"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

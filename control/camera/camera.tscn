@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d1fhfdds1iwhw"]
+
+[ext_resource type="Script" uid="uid://boudxlg4ib3x8" path="res://control/camera/camera.gd" id="1_it3fd"]
+
+[node name="Camera" type="Camera2D" unique_id=1086699227]
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+drag_horizontal_enabled = true
+drag_left_margin = 0.1
+drag_right_margin = 0.1
+editor_draw_drag_margin = true
+script = ExtResource("1_it3fd")
+
+[node name="TopLeft" type="Marker2D" parent="." unique_id=138159030]
+
+[node name="BotRight" type="Marker2D" parent="." unique_id=581957127]
