@@ -45,7 +45,7 @@ position = Vector2(136, 136)
 length = 3.0
 
 [node name="Fly" parent="." unique_id=1560395568 instance=ExtResource("6_dvnjj")]
-position = Vector2(152, 80)
+position = Vector2(104, 80)
 
 [node name="HouseSpider" parent="." unique_id=717715883 instance=ExtResource("7_dvnjj")]
 position = Vector2(64, 36)

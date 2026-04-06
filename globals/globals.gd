@@ -1,8 +1,8 @@
 extends Node
 
-signal CHANGE_LEVEL(level_path: String)
+signal LOAD_LEVEL(level_path: String)
 signal RESET_LEVEL
-signal RESET_OBJECTS
+signal RESET_PLAYER
 
 var items: Dictionary[int, bool]
 var saved_items: Dictionary[int, bool]
@@ -14,7 +14,7 @@ var level: String
 
 var can_reset: bool = false
 
-var jump_count: int = 50000
+var jump_count: int = 5
 
 func _ready() -> void:
 	for i: int in range(1,100):

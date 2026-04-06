@@ -1,26 +1,26 @@
 [gd_scene format=3 uid="uid://8u26l8gr1g5j"]
 
-[ext_resource type="Script" uid="uid://bt7lwfytx0bhe" path="res://levels/label_activator.gd" id="1_otyu2"]
+[ext_resource type="Script" uid="uid://bt7lwfytx0bhe" path="res://control/tutorial_label/tutorial_label.gd" id="1_otyu2"]
 
 [sub_resource type="Theme" id="Theme_otyu2"]
 
-[node name="LabelActivator" type="Area2D" unique_id=1799682618]
+[node name="TutorialLabel" type="Area2D" unique_id=1799682618]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_otyu2")
 label_text = "Siemano kolano"
 
 [node name="Label" type="RichTextLabel" parent="." unique_id=1354518476]
-offset_left = -128.0
+offset_left = -80.0
 offset_top = -88.0
-offset_right = 128.0
+offset_right = 80.0
 theme = SubResource("Theme_otyu2")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/normal_font_size = 8
-text = "123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/
+text = "123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/12345
 
-^to jest 250 znaków"
+^ this is 175 characters ^"
 horizontal_alignment = 1
 vertical_alignment = 1
 

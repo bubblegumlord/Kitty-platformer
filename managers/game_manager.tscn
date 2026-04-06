@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://n0qcdrshh7wr"]
+
+[ext_resource type="PackedScene" uid="uid://8xd7i7n755sg" path="res://menus/main_menu.tscn" id="1_4tkmi"]
+[ext_resource type="PackedScene" uid="uid://crei2yb8kiiqe" path="res://managers/level_manager.tscn" id="2_eni02"]
+
+[node name="GameManager" type="Node" unique_id=1913611373]
+
+[node name="MainMenu" parent="." unique_id=902192827 instance=ExtResource("1_4tkmi")]
+
+[node name="LevelManager" parent="." unique_id=1019048403 instance=ExtResource("2_eni02")]

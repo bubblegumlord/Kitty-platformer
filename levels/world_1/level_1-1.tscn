@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://trmuwa0f5sa2"]
+
+[ext_resource type="PackedScene" uid="uid://dxfqgiym8jr45" path="res://objects/collectibles/droplet/droplet.tscn" id="1_aoxjb"]
+[ext_resource type="Script" uid="uid://cf5cplj5gacxx" path="res://globals/custom_classes/level_class.gd" id="1_gbvgi"]
+[ext_resource type="PackedScene" uid="uid://8u26l8gr1g5j" path="res://control/tutorial_label/tutorial_label.tscn" id="1_rabl3"]
+[ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="2_rabl3"]
+[ext_resource type="PackedScene" uid="uid://d1fhfdds1iwhw" path="res://control/camera/camera.tscn" id="3_lny8l"]
+[ext_resource type="PackedScene" uid="uid://cbesvvvfn2gk7" path="res://objects/checkpoint_flag/checkpoint_flag.tscn" id="5_lny8l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lny8l"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rabl3"]
+radius = 96.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynd8h"]
+size = Vector2(8, 176)
+
+[node name="Level1-1" type="Node2D" unique_id=1761298926]
+script = ExtResource("1_gbvgi")
+metadata/_custom_type_script = "uid://cf5cplj5gacxx"
+
+[node name="TutorialLabels" type="Node2D" parent="." unique_id=211972179]
+
+[node name="TutorialJump" parent="TutorialLabels" unique_id=1799682618 instance=ExtResource("1_rabl3")]
+visible = false
+position = Vector2(128, 136)
+label_text = "Press SPACEBAR to jump!"
+
+[node name="Collision" type="CollisionShape2D" parent="TutorialLabels/TutorialJump" unique_id=428971566]
+shape = SubResource("CircleShape2D_lny8l")
+
+[node name="TutorialWalk" parent="TutorialLabels" unique_id=1528264530 instance=ExtResource("1_rabl3")]
+visible = false
+position = Vector2(88, 96)
+label_text = "Press A to move left, and D to move right!"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabels/TutorialWalk" unique_id=69568240]
+shape = SubResource("CircleShape2D_rabl3")
+
+[node name="WorldCollision" type="StaticBody2D" parent="." unique_id=68167334]
+
+[node name="Ground" type="CollisionPolygon2D" parent="WorldCollision" unique_id=1356310531]
+polygon = PackedVector2Array(0, 184, 0, 136, 160, 136, 160, 112, 216, 112, 216, 136, 264, 136, 264, 72, 320, 72, 320, 96, 384, 96, 384, 120, 744, 120, 744, 184)
+
+[node name="WorldBorderLeft" type="CollisionShape2D" parent="WorldCollision" unique_id=637392322]
+position = Vector2(0, 88)
+shape = SubResource("RectangleShape2D_ynd8h")
+
+[node name="Objects" type="Node2D" parent="." unique_id=449527356]
+
+[node name="Droplet" parent="Objects" unique_id=1270360593 instance=ExtResource("1_aoxjb")]
+y_sort_enabled = true
+position = Vector2(256, -64)
+id = 1
+
+[node name="Player" parent="Objects" unique_id=1077531745 instance=ExtResource("2_rabl3")]
+position = Vector2(16, 128)
+
+[node name="Camera" parent="Objects/Player" unique_id=1086699227 instance=ExtResource("3_lny8l")]
+
+[node name="TopLeft" parent="Objects/Player/Camera" index="0" unique_id=138159030]
+position = Vector2(-16, -128)
+
+[node name="BotRight" parent="Objects/Player/Camera" index="1" unique_id=581957127]
+position = Vector2(728, 48)
+
+[node name="CheckpointFlag" parent="Objects" unique_id=1104135889 node_paths=PackedStringArray("current_level") instance=ExtResource("5_lny8l")]
+visible = false
+position = Vector2(16, 128)
+current_level = NodePath("../..")
+id = 100
+
+[editable path="Objects/Player/Camera"]

@@ -30,7 +30,7 @@ var can_climb: bool = false
 
 var state: State = State.IDLE
 
-@onready var sprite: Node2D = $Visuals/Sprite
+@onready var sprite: Sprite2D = $Visuals/Sprite
 @onready var animation_player: AnimationPlayer = $Visuals/AnimationPlayer
 @onready var jump_buffer_timer: Timer = $Timers/JumpBufferTimer
 @onready var coyote_timer: Timer = $Timers/CoyoteTimer
@@ -40,7 +40,7 @@ var state: State = State.IDLE
 @onready var gravity_descent: float = (JUMP_HEIGHT * 2) / (JUMP_TIME_DESCENT)**2
 
 func _ready() -> void:
-	Globals.RESET_OBJECTS.connect(on_reset)
+	Globals.RESET_PLAYER.connect(on_reset)
 
 func _physics_process(delta: float) -> void:
 	direction_x = Input.get_axis("LEFT", "RIGHT")
