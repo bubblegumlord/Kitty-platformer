@@ -7,11 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://d1fhfdds1iwhw" path="res://control/camera/camera.tscn" id="3_lny8l"]
 [ext_resource type="PackedScene" uid="uid://cbesvvvfn2gk7" path="res://objects/checkpoint_flag/checkpoint_flag.tscn" id="5_lny8l"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rabl3"]
+radius = 96.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_lny8l"]
 radius = 32.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rabl3"]
-radius = 96.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_gbvgi"]
+radius = 24.33105
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynd8h"]
 size = Vector2(8, 176)
@@ -22,36 +25,44 @@ metadata/_custom_type_script = "uid://cf5cplj5gacxx"
 
 [node name="TutorialLabels" type="Node2D" parent="." unique_id=211972179]
 
-[node name="TutorialJump" parent="TutorialLabels" unique_id=1799682618 instance=ExtResource("1_rabl3")]
-visible = false
-position = Vector2(128, 136)
-label_text = "Press SPACEBAR to jump!"
-
-[node name="Collision" type="CollisionShape2D" parent="TutorialLabels/TutorialJump" unique_id=428971566]
-shape = SubResource("CircleShape2D_lny8l")
-
 [node name="TutorialWalk" parent="TutorialLabels" unique_id=1528264530 instance=ExtResource("1_rabl3")]
-visible = false
 position = Vector2(88, 96)
 label_text = "Press A to move left, and D to move right!"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabels/TutorialWalk" unique_id=69568240]
 shape = SubResource("CircleShape2D_rabl3")
 
+[node name="TutorialJump" parent="TutorialLabels" unique_id=1799682618 instance=ExtResource("1_rabl3")]
+position = Vector2(280, 128)
+label_text = "Press SPACEBAR to jump!"
+
+[node name="Collision" type="CollisionShape2D" parent="TutorialLabels/TutorialJump" unique_id=428971566]
+shape = SubResource("CircleShape2D_lny8l")
+
+[node name="TutorialDroplet" parent="TutorialLabels" unique_id=620822789 instance=ExtResource("1_rabl3")]
+position = Vector2(800, 152)
+label_text = "Every jump costs energy, to replenish it, collect droplet!"
+
+[node name="Collision" type="CollisionShape2D" parent="TutorialLabels/TutorialDroplet" unique_id=378644896]
+shape = SubResource("CircleShape2D_gbvgi")
+
 [node name="WorldCollision" type="StaticBody2D" parent="." unique_id=68167334]
 
 [node name="Ground" type="CollisionPolygon2D" parent="WorldCollision" unique_id=1356310531]
-polygon = PackedVector2Array(0, 184, 0, 136, 160, 136, 160, 112, 216, 112, 216, 136, 264, 136, 264, 72, 320, 72, 320, 96, 384, 96, 384, 120, 744, 120, 744, 184)
+polygon = PackedVector2Array(0, 184, 0, 136, 320, 136, 320, 112, 408, 112, 408, 96, 488, 96, 488, 72, 536, 72, 536, 104, 600, 104, 600, 160, 672, 160, 672, 128, 720, 128, 720, 160, 1192, 160, 1192, 184)
 
 [node name="WorldBorderLeft" type="CollisionShape2D" parent="WorldCollision" unique_id=637392322]
 position = Vector2(0, 88)
 shape = SubResource("RectangleShape2D_ynd8h")
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldCollision" unique_id=1169456985]
+polygon = PackedVector2Array(0, 0, 0, -8, 808, -8, 808, 0, 808, 80, 648, 80, 648, 112, 632, 112, 632, 64, 600, 64, 600, 0)
+
 [node name="Objects" type="Node2D" parent="." unique_id=449527356]
 
 [node name="Droplet" parent="Objects" unique_id=1270360593 instance=ExtResource("1_aoxjb")]
 y_sort_enabled = true
-position = Vector2(256, -64)
+position = Vector2(800, 112)
 id = 1
 
 [node name="Player" parent="Objects" unique_id=1077531745 instance=ExtResource("2_rabl3")]
@@ -63,7 +74,7 @@ position = Vector2(16, 128)
 position = Vector2(-16, -128)
 
 [node name="BotRight" parent="Objects/Player/Camera" index="1" unique_id=581957127]
-position = Vector2(728, 48)
+position = Vector2(1176, 48)
 
 [node name="CheckpointFlag" parent="Objects" unique_id=1104135889 node_paths=PackedStringArray("current_level") instance=ExtResource("5_lny8l")]
 visible = false
