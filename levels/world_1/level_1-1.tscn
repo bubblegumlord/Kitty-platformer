@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="2_rabl3"]
 [ext_resource type="PackedScene" uid="uid://d1fhfdds1iwhw" path="res://control/camera/camera.tscn" id="3_lny8l"]
 [ext_resource type="PackedScene" uid="uid://cbesvvvfn2gk7" path="res://objects/checkpoint_flag/checkpoint_flag.tscn" id="5_lny8l"]
+[ext_resource type="PackedScene" uid="uid://bdoj8n14bd2fo" path="res://control/energy_label/energy_label.tscn" id="5_ns2ht"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rabl3"]
 radius = 96.0
@@ -67,6 +68,10 @@ id = 1
 
 [node name="Player" parent="Objects" unique_id=1077531745 instance=ExtResource("2_rabl3")]
 position = Vector2(16, 128)
+
+[node name="EnergyLabel" parent="Objects/Player" unique_id=1670597872 node_paths=PackedStringArray("player") instance=ExtResource("5_ns2ht")]
+visible = false
+player = NodePath("..")
 
 [node name="Camera" parent="Objects/Player" unique_id=1086699227 instance=ExtResource("3_lny8l")]
 

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bdoj8n14bd2fo"]
+
+[ext_resource type="Script" uid="uid://cp1luwi27ef6n" path="res://control/energy_label/energy_label.gd" id="1_xqroa"]
+
+[sub_resource type="Theme" id="Theme_otyu2"]
+
+[node name="EnergyLabel" type="RichTextLabel" unique_id=1670597872]
+offset_left = -80.0
+offset_top = -40.0
+offset_right = 80.0
+theme = SubResource("Theme_otyu2")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 8
+text = "Looks like you've ran out of energy. You can always press R to reset to your last checkpoint and replenish your energy!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_xqroa")
+
+[node name="Timer" type="Timer" parent="." unique_id=2019213868]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

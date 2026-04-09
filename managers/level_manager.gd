@@ -25,3 +25,6 @@ func on_reset() -> void:
 	await get_tree().create_timer(0.05).timeout
 	Globals.jump_count = 5
 	Globals.RESET_PLAYER.emit()
+
+func test() -> void:
+	print("koniec skoków kolego")
