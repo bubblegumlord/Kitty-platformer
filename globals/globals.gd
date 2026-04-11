@@ -4,6 +4,8 @@ signal LOAD_LEVEL(level_path: String)
 signal RESET_LEVEL
 signal RESET_PLAYER
 
+var tutorial_labels: Array = [false, false, false, false, false]
+
 var items: Dictionary[int, bool]
 var saved_items: Dictionary[int, bool]
 

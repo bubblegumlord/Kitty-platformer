@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://trmuwa0f5sa2"]
+
+[ext_resource type="Script" uid="uid://cf5cplj5gacxx" path="res://globals/custom_classes/level_class.gd" id="1_1bylk"]
+[ext_resource type="PackedScene" uid="uid://8u26l8gr1g5j" path="res://control/tutorial_label/tutorial_label.tscn" id="2_yjlcl"]
+[ext_resource type="PackedScene" uid="uid://dxfqgiym8jr45" path="res://objects/collectibles/droplet/droplet.tscn" id="3_ohe04"]
+[ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="4_muvb3"]
+[ext_resource type="PackedScene" uid="uid://d1fhfdds1iwhw" path="res://control/camera/camera.tscn" id="6_pyiwh"]
+[ext_resource type="PackedScene" uid="uid://cbesvvvfn2gk7" path="res://objects/checkpoint_flag/checkpoint_flag.tscn" id="7_r8lhe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynd8h"]
+size = Vector2(8, 176)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rabl3"]
+radius = 88.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lny8l"]
+radius = 48.6621
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0m0vo"]
+radius = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bylk"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gbvgi"]
+radius = 24.33105
+
+[node name="TutorialLevel" type="Node2D" unique_id=1761298926]
+script = ExtResource("1_1bylk")
+metadata/_custom_type_script = "uid://cf5cplj5gacxx"
+
+[node name="WorldCollision" type="StaticBody2D" parent="." unique_id=68167334]
+
+[node name="Ground" type="CollisionPolygon2D" parent="WorldCollision" unique_id=1356310531]
+position = Vector2(312, 0)
+polygon = PackedVector2Array(-312, 184, -312, 136, 320, 136, 320, 112, 408, 112, 408, 96, 488, 96, 488, 72, 536, 72, 536, 104, 600, 104, 600, 160, 776, 160, 776, 128, 800, 128, 800, 88, 840, 88, 840, 152, 1192, 152, 1192, 184)
+
+[node name="WorldBorderLeft" type="CollisionShape2D" parent="WorldCollision" unique_id=637392322]
+position = Vector2(0, 88)
+shape = SubResource("RectangleShape2D_ynd8h")
+
+[node name="Ceiling" type="CollisionPolygon2D" parent="WorldCollision" unique_id=1169456985]
+position = Vector2(312, 0)
+polygon = PackedVector2Array(-312, 0, -312, -8, 808, -8, 808, 0, 808, 48, 648, 112, 632, 112, 632, 64, 600, 64, 600, 0)
+
+[node name="TutorialLabels" type="Node2D" parent="." unique_id=211972179]
+
+[node name="TutorialWalk" parent="TutorialLabels" unique_id=1528264530 instance=ExtResource("2_yjlcl")]
+position = Vector2(88, 96)
+label_text = "Press A to move left, and D to move right!"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabels/TutorialWalk" unique_id=69568240]
+shape = SubResource("CircleShape2D_rabl3")
+
+[node name="TutorialJump" parent="TutorialLabels" unique_id=1799682618 instance=ExtResource("2_yjlcl")]
+position = Vector2(280, 128)
+id = 1
+label_text = "Press SPACEBAR to jump!"
+
+[node name="Collision" type="CollisionShape2D" parent="TutorialLabels/TutorialJump" unique_id=428971566]
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_lny8l")
+
+[node name="TutorialEnergy" parent="TutorialLabels" unique_id=737512515 instance=ExtResource("2_yjlcl")]
+position = Vector2(512, 128)
+id = 2
+label_text = "When you run out of energy, you can always press R to reset to your last checkpoint and replenish it!"
+
+[node name="Collision" type="CollisionShape2D" parent="TutorialLabels/TutorialEnergy" unique_id=274747087]
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_0m0vo")
+
+[node name="TutorialCheckpoint" parent="TutorialLabels" unique_id=1344053375 instance=ExtResource("2_yjlcl")]
+position = Vector2(968, 144)
+id = 3
+label_text = "This is a checkpoint flag, when you interact with it, you set it to active. After pressing R you will be teleported here"
+
+[node name="Collision" type="CollisionShape2D" parent="TutorialLabels/TutorialCheckpoint" unique_id=838296890]
+shape = SubResource("CircleShape2D_1bylk")
+
+[node name="TutorialDroplet" parent="TutorialLabels" unique_id=620822789 instance=ExtResource("2_yjlcl")]
+position = Vector2(1256, 136)
+id = 4
+label_text = "Every jump costs energy, to replenish it, collect droplet!"
+
+[node name="Collision" type="CollisionShape2D" parent="TutorialLabels/TutorialDroplet" unique_id=378644896]
+shape = SubResource("CircleShape2D_gbvgi")
+
+[node name="Objects" type="Node2D" parent="." unique_id=449527356]
+
+[node name="Droplet" parent="Objects" unique_id=1270360593 instance=ExtResource("3_ohe04")]
+y_sort_enabled = true
+position = Vector2(1360, 136)
+id = 1
+
+[node name="Player" parent="Objects" unique_id=1077531745 instance=ExtResource("4_muvb3")]
+position = Vector2(16, 128)
+
+[node name="Camera" parent="Objects/Player" unique_id=1086699227 instance=ExtResource("6_pyiwh")]
+
+[node name="TopLeft" parent="Objects/Player/Camera" index="0" unique_id=138159030]
+position = Vector2(-16, -128)
+
+[node name="BotRight" parent="Objects/Player/Camera" index="1" unique_id=581957127]
+position = Vector2(1488, 48)
+
+[node name="CheckpointFlag" parent="Objects" unique_id=1104135889 node_paths=PackedStringArray("current_level") instance=ExtResource("7_r8lhe")]
+visible = false
+position = Vector2(16, 128)
+current_level = NodePath("../..")
+id = 100
+
+[node name="CheckpointFlag2" parent="Objects" unique_id=71064603 node_paths=PackedStringArray("current_level") instance=ExtResource("7_r8lhe")]
+position = Vector2(1032, 152)
+current_level = NodePath("../..")
+id = 101
+
+[editable path="Objects/Player/Camera"]
