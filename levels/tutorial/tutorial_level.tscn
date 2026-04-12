@@ -97,12 +97,7 @@ id = 1
 position = Vector2(16, 128)
 
 [node name="Camera" parent="Objects/Player" unique_id=1086699227 instance=ExtResource("6_pyiwh")]
-
-[node name="TopLeft" parent="Objects/Player/Camera" index="0" unique_id=138159030]
 position = Vector2(-16, -128)
-
-[node name="BotRight" parent="Objects/Player/Camera" index="1" unique_id=581957127]
-position = Vector2(1488, 48)
 
 [node name="CheckpointFlag" parent="Objects" unique_id=1104135889 node_paths=PackedStringArray("current_level") instance=ExtResource("7_r8lhe")]
 visible = false

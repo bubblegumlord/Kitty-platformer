@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ce6c1jxwk34hg"]
+
+[ext_resource type="Script" uid="uid://bhqmih7wcj8ih" path="res://control/camera/room.gd" id="1_ttbtu"]
+
+[sub_resource type="Gradient" id="Gradient_ttbtu"]
+offsets = PackedFloat32Array(0.996118)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8i0pj"]
+gradient = SubResource("Gradient_ttbtu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqmm6"]
+size = Vector2(304, 164)
+
+[node name="Room" type="Area2D" unique_id=1055840368]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ttbtu")
+
+[node name="Range" type="Sprite2D" parent="." unique_id=216489979]
+position = Vector2(160, 90.00001)
+scale = Vector2(1.25, 180)
+texture = SubResource("GradientTexture1D_8i0pj")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=905893333]
+position = Vector2(160, 90)
+shape = SubResource("RectangleShape2D_nqmm6")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

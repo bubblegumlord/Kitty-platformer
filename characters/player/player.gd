@@ -16,9 +16,9 @@ const ACCELERATION: float = 480
 const DECELERATION: float = 800
 
 # jump constants
-const JUMP_HEIGHT: float = 60
-const JUMP_TIME_PEAK: float = 0.35
-const JUMP_TIME_DESCENT: float = 0.25
+const JUMP_HEIGHT: float = 80
+const JUMP_TIME_PEAK: float = 0.42
+const JUMP_TIME_DESCENT: float = 0.30
 
 var direction_x: float
 var direction_y: float

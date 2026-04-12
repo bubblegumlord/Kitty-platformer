@@ -3,6 +3,7 @@ extends Node
 signal LOAD_LEVEL(level_path: String)
 signal RESET_LEVEL
 signal RESET_PLAYER
+signal UPDATE_CAMERA(position: Vector2)
 
 var tutorial_labels: Array = [false, false, false, false, false]
 
@@ -16,7 +17,7 @@ var level: String
 
 var can_reset: bool = false
 
-var jump_count: int = 5
+var jump_count: int = 50000000
 
 func _ready() -> void:
 	for i: int in range(1,100):
