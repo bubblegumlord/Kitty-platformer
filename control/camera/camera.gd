@@ -16,8 +16,6 @@ func update_position(camera_position: Vector2) -> void:
 	new_camera_position[2] = int(camera_position.y)
 	new_camera_position[3] = int(camera_position.y) + ROOM_HEIGHT
 	
-	print(new_camera_position)
-	
 	change_position = get_tree().create_tween().set_parallel()
 	
 	change_position.tween_property(self, "limit_left", new_camera_position[0], TIMER)

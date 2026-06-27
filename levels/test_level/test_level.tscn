@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://7l801mqxt7xy"]
+
+[ext_resource type="Script" uid="uid://cf5cplj5gacxx" path="res://globals/custom_classes/level_class.gd" id="1_qo0ko"]
+[ext_resource type="PackedScene" uid="uid://ce6c1jxwk34hg" path="res://control/camera/room.tscn" id="2_8th66"]
+[ext_resource type="PackedScene" uid="uid://d1fhfdds1iwhw" path="res://control/camera/camera.tscn" id="3_xctyr"]
+[ext_resource type="PackedScene" uid="uid://c73kf3v3hg1so" path="res://characters/player/player.tscn" id="4_18dot"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1acv"]
+size = Vector2(328, 16)
+
+[node name="TestLevel" type="Node2D" unique_id=2098030355]
+script = ExtResource("1_qo0ko")
+metadata/_custom_type_script = "uid://cf5cplj5gacxx"
+
+[node name="Room" parent="." unique_id=1055840368 instance=ExtResource("2_8th66")]
+
+[node name="Camera" parent="." unique_id=1086699227 instance=ExtResource("3_xctyr")]
+
+[node name="WorldCollision" type="StaticBody2D" parent="." unique_id=1477130226]
+position = Vector2(0, 176)
+
+[node name="Ground" type="CollisionShape2D" parent="WorldCollision" unique_id=229858145]
+position = Vector2(160, 0)
+shape = SubResource("RectangleShape2D_v1acv")
+
+[node name="Player" parent="." unique_id=1077531745 instance=ExtResource("4_18dot")]
+position = Vector2(112, 92)

@@ -6,7 +6,6 @@ enum State {
 	MOVE,
 	JUMP,
 	FALL,
-	CLIMB,
 	HIT,
 }
 
@@ -55,14 +54,10 @@ func _physics_process(delta: float) -> void:
 			jump_state(delta)
 		State.FALL:
 			fall_state(delta)
-		State.CLIMB:
-			climb_state(delta)
 		State.HIT:
 			hit_state()
 	
-	if state != State.CLIMB:
-		velocity.y += set_gravity() * delta
-	
+	velocity.y += set_gravity() * delta
 	check_coyote()
 	move_and_slide()
 
@@ -82,14 +77,9 @@ func idle_state() -> void:
 		state = State.MOVE
 		return
 	
-	if Input.is_action_just_pressed("JUMP") and Globals.jump_count > 0:
+	if Input.is_action_just_pressed("JUMP"):
 		jump_buffer_timer.start()
 		state = State.JUMP
-		Globals.jump_count -= 1
-		return
-	
-	if direction_y != 0 and can_climb:
-		state = State.CLIMB
 		return
 	
 	if not is_on_floor() and velocity.y > 0:
@@ -115,10 +105,9 @@ func move_state(delta: float) -> void:
 		state = State.IDLE
 		return
 	
-	if Input.is_action_just_pressed("JUMP") and Globals.jump_count > 0:
+	if Input.is_action_just_pressed("JUMP"):
 		jump_buffer_timer.start()
 		state = State.JUMP
-		Globals.jump_count -= 1
 		return
 	
 	if not is_on_floor() and velocity.y > 0:
@@ -150,9 +139,8 @@ func fall_state(delta: float) -> void:
 		jump_buffer_timer.start()
 	
 	if not jump_buffer_timer.is_stopped():
-		if (is_on_floor() or not coyote_timer.is_stopped()) and Globals.jump_count:
+		if (is_on_floor() or not coyote_timer.is_stopped()):
 			state = State.JUMP
-			Globals.jump_count -= 1
 			return
 	
 	if is_on_floor():
@@ -160,22 +148,6 @@ func fall_state(delta: float) -> void:
 			state = State.IDLE
 		else:
 			state = State.MOVE
-
-func climb_state(delta: float) -> void:
-	# animation play climb
-	
-	velocity.y = set_speed(direction_y, velocity.y, ACCELERATION, DECELERATION)
-	velocity.x = set_speed(direction_x, velocity.x, ACCELERATION * delta, DECELERATION * delta)
-	
-	if Input.is_action_just_pressed("JUMP") and Globals.jump_count > 0:
-		jump_buffer_timer.start()
-		state = State.JUMP
-		velocity.y = jump_velocity
-		Globals.jump_count -= 1
-		return
-	
-	if not can_climb:
-		state = State.FALL
 
 func hit_state() -> void:
 	animation_player.play("hit")
