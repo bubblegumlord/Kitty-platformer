@@ -1,8 +1,10 @@
 extends Node
 
-signal LOAD_LEVEL(level_path: String)
+signal LOAD_LEVEL(level_path: String, entrance_id: int)
 signal RESET_LEVEL
+
 signal RESET_PLAYER
+
 signal UPDATE_CAMERA(position: Vector2)
 
 var tutorial_labels: Array = [false, false, false, false, false]
@@ -13,13 +15,10 @@ var saved_items: Dictionary[int, bool]
 var active_checkpoint_id: int
 var checkpoint_position: Vector2
 var checkpoint_level: String
-var level: String
 
 var can_reset: bool = false
 
-var jump_count: int = 50000000
-
-func _ready() -> void:
+func initialize_items() -> void:
 	for i: int in range(1,100):
 		items[i] = false
 	

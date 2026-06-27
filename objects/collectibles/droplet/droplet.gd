@@ -10,6 +10,5 @@ func _ready() -> void:
 		queue_free()
 
 func _on_area_entered(_area: Area2D) -> void:
-	Globals.jump_count = 5
 	Globals.items[id] = true
 	queue_free()
